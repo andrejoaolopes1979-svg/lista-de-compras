@@ -12,8 +12,8 @@
 
 "use strict";
 
-const CACHE_NAME = "compras-inteligentes-v1";
-const RUNTIME_CACHE = "compras-inteligentes-runtime-v1";
+const CACHE_NAME = "compras-inteligentes-v2";
+const RUNTIME_CACHE = "compras-inteligentes-runtime-v2";
 
 /* Recursos necessários para o app shell funcionar offline. */
 const PRECACHE_URLS = [
@@ -27,6 +27,8 @@ const PRECACHE_URLS = [
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
+  "./icons/icon-192-maskable.png",
+  "./icons/icon-512-maskable.png",
   "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js",
 ];
 

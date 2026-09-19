@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#22c55e">
   <meta name="description" content="Lista de Supermercado, Planejamento e Controle de Compras — PWA 100% offline.">
+
+  <!-- Metas de app web (Android / iOS) -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Compras">
   <title>Compras Inteligentes</title>
 
   <!-- PWA -->
@@ -81,6 +87,11 @@
 
   <!-- Toast de feedback -->
   <div id="toast" class="toast" role="status"></div>
+
+  <!-- Botão de instalação do PWA (aparece via beforeinstallprompt no Android) -->
+  <button id="installBtn" class="install-float hidden" data-action="install-app">
+    Instalar aplicativo
+  </button>
 
   <!-- Modal genérico de confirmação -->
   <div id="modal" class="modal-backdrop" hidden>

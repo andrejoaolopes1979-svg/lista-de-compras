@@ -585,6 +585,7 @@ function bindEvents() {
       case "del-purchase": deletePurchase(id); break;
 
       case "export-backup": exportBackup(); break;
+      case "install-app": installApp(); break;
       case "request-persist":
         navigator.storage && navigator.storage.persist
           ? navigator.storage.persist().then(() => renderBackup())
@@ -712,9 +713,45 @@ async function loadAll() {
 function registerSW() {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch((err) => console.warn("SW registro falhou:", err));
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).catch((err) => console.warn("SW registro falhou:", err));
     });
   }
+}
+
+/** PWA: guarda o evento de instalação e mostra o botão "Instalar". */
+let _deferInstallPrompt = null;
+
+function setupInstallPrompt() {
+  // Evidencia o botão somente quando o navegador autorizar instalação (Android/Chrome).
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    _deferInstallPrompt = event;
+    setInstallButton(true);
+  });
+
+  window.addEventListener("appinstalled", () => {
+    _deferInstallPrompt = null;
+    setInstallButton(false);
+    toast("Aplicativo instalado!");
+  });
+
+  // Se já roda em modo standalone (instalado), esconde o botão.
+  if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) {
+    setInstallButton(false);
+  }
+}
+
+/** Exibe/esconde o botão flutuante de instalação. */
+function setInstallButton(visible) {
+  const btn = document.getElementById("installBtn");
+  if (btn) btn.classList.toggle("hidden", !visible);
+}
+
+/** Dispara o prompt nativo de instalação do navegador. */
+function installApp() {
+  if (!_deferInstallPrompt) return;
+  _deferInstallPrompt.prompt();
+  _deferInstallPrompt.userChoice.then(() => { _deferInstallPrompt = null; });
 }
 
 /** PWA: tenta tornar o armazenamento persistente (evita limpeza automática). */
@@ -743,6 +780,7 @@ async function init() {
     refreshSuggestions();
     bindEvents();
     setupNetworkBadge();
+    setupInstallPrompt();
     switchView("plan");
     registerSW();
     requestPersist();
