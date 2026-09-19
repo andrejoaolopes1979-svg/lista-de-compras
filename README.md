@@ -93,8 +93,9 @@ Lista de Compras/
 
 ## Como executar localmente
 
-O Service Worker exige **HTTP/HTTPS** (não funciona via `file://`). Use qualquer
-servidor estático:
+Segure o código e execute sem nenhuma dependência externa (além do Chart.js via CDN,
+que é cacheado pelo Service Worker). O Service Worker exige **HTTP/HTTPS**
+(não funciona via `file://`). Use qualquer servidor estático:
 
 ```bash
 # Opção 1: Python
