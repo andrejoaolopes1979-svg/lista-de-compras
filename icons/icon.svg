@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Fundo: gradiente verde escuro -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#15803d"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- Cesta/carrinho estilizado -->
+  <g fill="#ffffff">
+    <path d="M120 160h292l-30 132a34 34 0 0 1-33 26H196a34 34 0 0 1-33-26l-31-126-12-6z"/>
+    <rect x="120" y="160" width="24" height="40" rx="10" transform="rotate(-18 132 180)"/>
+    <circle cx="196" cy="392" r="24"/>
+    <circle cx="340" cy="392" r="24"/>
+  </g>
+</svg>
